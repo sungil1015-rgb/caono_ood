@@ -24,19 +24,20 @@ from train_roi_step_contrastive import SOURCE, STEPS
 from train_roi_unet_contrastive import UNetContrastiveDecoder, load_config, load_encoder
 from train_step_roi_detector import make_model
 from train_step_contrastive import ROOT
+from bundle_paths import ASSET_ROOT, BUNDLE_ROOT, CONFIG_ROOT, OUTPUT_ROOT, unet_model_dir
 
-DATA = ROOT / "data/experiment_v1"
-OUTPUT = DATA / "roi_unet_test_pipeline"
+DATA = ASSET_ROOT / "splits"
+OUTPUT = OUTPUT_ROOT / "roi_unet_test_pipeline"
 CONFIGS = {
-    "3029C003AA": Path(__file__).parent / "configs/roi_unet_c003_color_only_equal.toml",
-    "3029C009AA": Path(__file__).parent / "configs/roi_unet_contrastive_batch144_epoch20.toml",
+    "3029C003AA": CONFIG_ROOT / "roi_unet_c003_color_only_equal.toml",
+    "3029C009AA": CONFIG_ROOT / "roi_unet_contrastive_batch144_epoch20.toml",
 }
 LEVELS = {"3029C003AA": "up1", "3029C009AA": "bottleneck"}
 REVIEWED_NG = {"3029C003AA": ("2EQ16854", 11)}
 
 
 def product_folder(product: str, config: dict) -> Path:
-    return ROOT / config["experiment"]["output_dir"] / product
+    return unet_model_dir(product, config)
 
 
 def rows_for_product(product: str) -> list[dict]:
@@ -70,7 +71,7 @@ def rows_for_product(product: str) -> list[dict]:
                                 if row["product_code"] == product)
     if any(row["source_path"] in train_or_cal for row in test):
         raise ValueError("Test image overlaps train or val")
-    label_root = ROOT / "data/crop_canon_data"
+    label_root = ASSET_ROOT / "crop_canon_data"
     detector_labeled = {str(path.parent.relative_to(label_root))
                         for path in label_root.glob("*/*/step_*.txt")}
     if any(f"{product}/{row['serial']}" in detector_labeled for row in test):
@@ -163,7 +164,7 @@ def save_roi(row: dict, output: Path, scales: dict[str, float]) -> None:
         target = output / "crops" / row["source_group"] / row["serial"] / filename
         target.parent.mkdir(parents=True, exist_ok=True)
         canvas.save(target, quality=95)
-    row.update(crop_path=str(target.relative_to(ROOT)), crop_xyxy=list(box), crop_scale=scale,
+    row.update(crop_path=str(target.resolve()), crop_xyxy=list(box), crop_scale=scale,
                crop_scale_step=int(row["predicted_step"]))
 
 
@@ -314,7 +315,7 @@ def main() -> None:
     write_csv(rows, output / "per_image.csv")
     report = summarize(rows)
     report.update({"product": product, "test_split": "held-out serial-level test; step 1-12",
-                   "model_level": LEVELS[product], "model_config": str(CONFIGS[product].relative_to(ROOT)),
+                   "model_level": LEVELS[product], "model_config": str(CONFIGS[product].relative_to(BUNDLE_ROOT)),
                    "roi_scale_source": "predicted step, not ground-truth file name",
                    "roi_threshold": 0.25,
                    "unet_threshold": "saved per-step val_normal p99",

@@ -19,13 +19,14 @@ from train_roi_unet_contrastive import (
     load_encoder,
 )
 from train_step_contrastive import ROOT
+from bundle_paths import CONFIG_ROOT, MODEL_ROOT, OUTPUT_ROOT
 
 PRODUCT = "3029C003AA"
-UNET_CONFIG = Path(__file__).parent / "configs/roi_unet_c003_color_only_equal.toml"
-RESNET_CONFIG = Path(__file__).parent / "configs/roi_resnet18_full_supcon_c003_masked.toml"
-UNET_FOLDER = ROOT / "data/experiment_v1/roi_unet_contrastive/color_only_equal_batch144_epoch20" / PRODUCT
-RESNET_FOLDER = ROOT / "data/experiment_v1/roi_resnet18_full_supcon/c003_masked_mean_max"
-DEFAULT_OUTPUT = ROOT / "data/experiment_v1/roi_cross_step_top2_c003"
+UNET_CONFIG = CONFIG_ROOT / "roi_unet_c003_color_only_equal.toml"
+RESNET_CONFIG = CONFIG_ROOT / "roi_resnet18_full_supcon_c003_masked.toml"
+UNET_FOLDER = MODEL_ROOT / "unet/color_only_equal_batch144_epoch20" / PRODUCT
+RESNET_FOLDER = MODEL_ROOT / "comparison_resnet/c003_masked_mean_max"
+DEFAULT_OUTPUT = OUTPUT_ROOT / "roi_cross_step_top2_c003"
 
 
 def load_query_rows() -> list[dict]:

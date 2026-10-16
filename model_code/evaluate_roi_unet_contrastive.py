@@ -11,6 +11,7 @@ import torch
 from torch.utils.data import DataLoader
 
 from train_roi_step_contrastive import SOURCE, STEPS
+from bundle_paths import OUTPUT_ROOT, unet_model_dir
 from train_roi_unet_contrastive import (
     LEVELS, DEFAULT_CONFIG, OUTPUT, RoiWithMask, UNetContrastiveDecoder, frozen_features, load_encoder,
     load_config, output_root,
@@ -66,12 +67,15 @@ def main():
     p.add_argument('--product', choices=('3029C003AA', '3029C009AA'), required=True)
     p.add_argument('--device', default='cuda:0')
     p.add_argument('--config', type=Path, default=DEFAULT_CONFIG)
+    p.add_argument('--output', type=Path)
     args = p.parse_args()
     config = load_config(args.config)
     device = torch.device(args.device)
-    folder = output_root(config)/args.product
+    model_folder = unet_model_dir(args.product, config)
+    folder = args.output or OUTPUT_ROOT/'unet_evaluation'/model_folder.parent.name/args.product
+    folder.mkdir(parents=True, exist_ok=True)
     encoder = load_encoder(args.product, device)
-    saved = torch.load(folder/'decoder_weights.pt',map_location='cpu',weights_only=False)
+    saved = torch.load(model_folder/'decoder_weights.pt',map_location='cpu',weights_only=False)
     saved_config = saved['config']
     if 'hyperparameters' in saved_config:
         if saved_config['hyperparameters'] != config:

@@ -16,11 +16,12 @@ from torch.utils.data import DataLoader, Dataset
 from torchvision.transforms.functional import pil_to_tensor
 
 from train_step_roi_detector import make_model
+from bundle_paths import ASSET_ROOT, BUNDLE_ROOT, DATA_ROOT, MODEL_ROOT, OUTPUT_ROOT
 
-ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / 'data/experiment_v1'
-WEIGHTS = DATA / 'roi_detector/detector_final_weights.pt'
-OUTPUT = DATA / 'roi_contrastive'
+ROOT = DATA_ROOT
+DATA = ASSET_ROOT / 'splits'
+WEIGHTS = MODEL_ROOT / 'roi_detector/detector_final_weights.pt'
+OUTPUT = OUTPUT_ROOT / 'roi_contrastive'
 PRODUCTS = ('3029C003AA', '3029C009AA')
 STEPS = tuple(range(1, 13))
 # These val_step serials were used to train the existing detector.
@@ -133,7 +134,7 @@ def save_crops(rows, output, margin=0.10, side=1024):
             target = output / 'crops' / row['split'] / row['product_code'] / row['serial'] / filename
             target.parent.mkdir(parents=True, exist_ok=True)
             canvas.save(target, quality=95)
-            row['crop_path'] = str(target.relative_to(ROOT))
+            row['crop_path'] = str(target.resolve())
             row['crop_xyxy'] = box
             row['crop_scale'] = effective_scale
         if index % 1000 == 0 or index == len(rows):
@@ -161,7 +162,7 @@ def main():
         return
     scale = save_crops(rows, args.output)
     (args.output / 'manifest.json').write_text(json.dumps({
-        'detector': str(WEIGHTS.relative_to(ROOT)),
+        'detector': str(WEIGHTS.relative_to(BUNDLE_ROOT)),
         'class_use': 'ignore predicted step label; highest-confidence box only',
         'min_score': args.min_score, 'input_canvas': 1024,
         'margin_each_side': 0.10, 'scale_by_step': scale,

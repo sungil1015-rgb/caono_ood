@@ -9,12 +9,14 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
+from bundle_paths import ASSET_ROOT, DATA_ROOT, OUTPUT_ROOT
 
-ROOT = Path(__file__).resolve().parents[1]
+
+ROOT = DATA_ROOT
 PRODUCT = "3029C003AA"
-SOURCE = ROOT / "data/experiment_v1/roi_unet_test_pipeline" / PRODUCT
-DEST = ROOT / "unet_based_constraive_learning/experiment_results/test_pipeline/normal_final_fail"
-CANONICAL_DEST = ROOT / "data/experiment_v1/roi_unet_test_pipeline/normal_final_fail"
+BASE = OUTPUT_ROOT / "roi_unet_test_pipeline"
+SOURCE = BASE / PRODUCT
+DEST = BASE / "normal_final_fail"
 REASONS = ("STEP_MISMATCH", "NO_ROI", "UNET_FAIL")
 
 
@@ -100,7 +102,7 @@ def main() -> None:
         writer = csv.DictWriter(stream, fieldnames=fields)
         writer.writeheader()
         writer.writerows({key: row[key] for key in fields} for row in records)
-    font_path = ROOT / "experiment/assets/fonts/NanumGothic-Bold.ttf"
+    font_path = ASSET_ROOT / "fonts/NanumGothic-Bold.ttf"
     font = ImageFont.truetype(str(font_path), 18) if font_path.is_file() else ImageFont.load_default()
     links = []
     for kind in REASONS:
@@ -122,9 +124,6 @@ def main() -> None:
         "## 원인별 갤러리\n\n" + "\n".join(links) + "\n",
         encoding="utf-8",
     )
-    if CANONICAL_DEST.exists():
-        shutil.rmtree(CANONICAL_DEST)
-    shutil.copytree(DEST, CANONICAL_DEST)
     print(f"images={len(records)} reasons={dict(counts)} galleries={len(links)}")
 
 

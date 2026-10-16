@@ -19,10 +19,11 @@ from torchvision.transforms import functional as TF
 
 from train_roi_step_contrastive import BalancedStepBatches, SOURCE, STEPS
 from train_step_contrastive import FourDepthEncoder, ROOT, supervised_contrastive
+from bundle_paths import BUNDLE_ROOT, CONFIG_ROOT, MODEL_ROOT, OUTPUT_ROOT
 
-OUTPUT = ROOT / 'data/experiment_v1/roi_unet_contrastive'
-DEFAULT_CONFIG = Path(__file__).parent / 'configs/roi_unet_contrastive_v1.toml'
-SOURCE_MODELS = ROOT / 'data/experiment_v1/roi_contrastive'
+OUTPUT = OUTPUT_ROOT / 'roi_unet_contrastive'
+DEFAULT_CONFIG = CONFIG_ROOT / 'roi_unet_c003_color_only_equal.toml'
+SOURCE_MODELS = MODEL_ROOT / 'roi_encoder'
 LEVELS = ('bottleneck', 'up2', 'up1')
 
 
@@ -52,7 +53,7 @@ def load_config(path: Path) -> dict:
 
 
 def output_root(config: dict) -> Path:
-    return ROOT / config['experiment']['output_dir']
+    return OUTPUT / Path(config['experiment']['output_dir']).name
 
 
 class RoiWithMask(Dataset):
@@ -246,7 +247,7 @@ def main():
     output = output_root(config)/args.product
     output.mkdir(parents=True, exist_ok=True)
     metadata = {'product':args.product, 'steps':list(STEPS), 'input_size':config['data']['input_size'],
-                'frozen_encoder':str((SOURCE_MODELS/args.product/'encoder_weights.pt').relative_to(ROOT)),
+                'frozen_encoder':str((SOURCE_MODELS/args.product/'encoder_weights.pt').relative_to(BUNDLE_ROOT)),
                 'train_images':len(rows), 'epochs':train['epochs'],
                 'batch_size':train['serials_per_step']*len(STEPS), 'microbatch':train['microbatch'],
                 'hyperparameters':config}

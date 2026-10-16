@@ -8,11 +8,12 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
+from bundle_paths import ASSET_ROOT, DATA_ROOT, OUTPUT_ROOT
 
-ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "data/experiment_v1/roi_unet_test_pipeline"
-DEST = ROOT / "unet_based_constraive_learning/experiment_results/test_pipeline/unet_wrong_step_pass"
-CANONICAL_DEST = ROOT / "data/experiment_v1/roi_unet_test_pipeline/unet_wrong_step_pass"
+
+ROOT = DATA_ROOT
+SOURCE = OUTPUT_ROOT / "roi_unet_test_pipeline"
+DEST = SOURCE / "unet_wrong_step_pass"
 PRODUCTS = ("3029C003AA",)
 
 
@@ -41,7 +42,7 @@ def make_gallery(rows: list[dict], path: Path, font: ImageFont.FreeTypeFont) -> 
 
 def main() -> None:
     DEST.mkdir(parents=True, exist_ok=True)
-    font_path = ROOT / "experiment/assets/fonts/NanumGothic-Bold.ttf"
+    font_path = ASSET_ROOT / "fonts/NanumGothic-Bold.ttf"
     font = ImageFont.truetype(str(font_path), 18) if font_path.is_file() else ImageFont.load_default()
     manifest = []
     for product in PRODUCTS:
@@ -94,9 +95,6 @@ def main() -> None:
         "또한 이 목록은 U-Net 단독 기준이므로, 스텝 분류기가 올바르면 최종 파이프라인에서는 대부분 거절된다.\n",
         encoding="utf-8",
     )
-    if CANONICAL_DEST.exists():
-        shutil.rmtree(CANONICAL_DEST)
-    shutil.copytree(DEST, CANONICAL_DEST)
     print(f"images={len(manifest)} wrong_step_pairs={wrong_pairs} final_wrong_pass={final_pairs}")
 
 

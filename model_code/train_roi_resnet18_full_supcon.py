@@ -18,8 +18,9 @@ from torchvision.models import ResNet18_Weights, resnet18
 from train_roi_step_contrastive import BalancedStepBatches, SOURCE, STEPS
 from train_roi_unet_contrastive import RoiWithMask, normalize
 from train_step_contrastive import ROOT, supervised_contrastive
+from bundle_paths import CONFIG_ROOT, OUTPUT_ROOT
 
-DEFAULT_CONFIG = Path(__file__).parent / 'configs/roi_resnet18_full_supcon_c003.toml'
+DEFAULT_CONFIG = CONFIG_ROOT / 'roi_resnet18_full_supcon_c003_masked.toml'
 
 
 def load_config(path: Path) -> dict:
@@ -146,7 +147,7 @@ def main():
         {'params':model.head.parameters(), 'lr':train['head_learning_rate']}],
         weight_decay=train['weight_decay'])
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=train['epochs'])
-    folder = ROOT / config['experiment']['output_dir']
+    folder = OUTPUT_ROOT / 'comparison_resnet' / Path(config['experiment']['output_dir']).name
     folder.mkdir(parents=True, exist_ok=True)
     metadata = {'product':product, 'steps':list(STEPS), 'train_images':len(rows),
                 'batch_size':train['serials_per_step']*len(STEPS),

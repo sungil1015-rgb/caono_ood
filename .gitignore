@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+outputs/
+.DS_Store
+assets/crop_canon_data
+models/
+models.tar.gz

@@ -16,6 +16,7 @@ from train_roi_step_contrastive import SOURCE, STEPS
 from train_roi_unet_contrastive import RoiWithMask, normalize
 from train_roi_resnet18_full_supcon import DEFAULT_CONFIG, FinalResNetEmbedding, load_config
 from train_step_contrastive import ROOT
+from bundle_paths import OUTPUT_ROOT, comparison_model_dir
 
 SPLITS = ('train', 'val_normal', 'val_step', 'ng', 'paired_normal')
 
@@ -44,12 +45,15 @@ def main():
     parser.add_argument('--config', type=Path, default=DEFAULT_CONFIG)
     parser.add_argument('--device', default='cuda:0')
     parser.add_argument('--checkpoint', type=Path)
+    parser.add_argument('--output', type=Path)
     parser.add_argument('--suffix', default='')
     args = parser.parse_args()
     config = load_config(args.config)
     product = config['experiment']['product']
-    folder = ROOT / config['experiment']['output_dir']
-    saved = torch.load(args.checkpoint or folder/'encoder_weights.pt', map_location='cpu', weights_only=False)
+    model_folder = comparison_model_dir(config)
+    folder = args.output or OUTPUT_ROOT / 'comparison_evaluation' / model_folder.name
+    folder.mkdir(parents=True, exist_ok=True)
+    saved = torch.load(args.checkpoint or model_folder/'encoder_weights.pt', map_location='cpu', weights_only=False)
     if saved['config']['hyperparameters'] != config:
         raise ValueError('Checkpoint hyperparameters do not match supplied TOML')
     model_config = copy.deepcopy(config)

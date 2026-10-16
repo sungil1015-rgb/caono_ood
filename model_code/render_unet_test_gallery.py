@@ -7,14 +7,15 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 from train_step_contrastive import ROOT
+from bundle_paths import ASSET_ROOT, OUTPUT_ROOT, load_ng_reference
 
-BASE = ROOT / 'data/experiment_v1/roi_unet_test_pipeline'
+BASE = OUTPUT_ROOT / 'roi_unet_test_pipeline'
 PRODUCTS = ('3029C003AA', '3029C009AA')
 NORMAL_TEST_PRODUCT = '3029C003AA'
 
 
 def sheet(rows: list[dict], destination: Path) -> None:
-    font_path = ROOT / 'experiment/assets/fonts/NanumGothic-Bold.ttf'
+    font_path = ASSET_ROOT / 'fonts/NanumGothic-Bold.ttf'
     font = ImageFont.truetype(str(font_path), 18) if font_path.is_file() else ImageFont.load_default()
     tile_w, tile_h, columns = 720, 390, 2
     canvas = Image.new('RGB', (tile_w * columns, tile_h * ((len(rows) + 1) // columns)), '#dddddd')
@@ -43,8 +44,11 @@ def sheet(rows: list[dict], destination: Path) -> None:
 
 
 def main() -> None:
-    images = [row for product in PRODUCTS
-              for row in json.loads((BASE / product / 'per_image.json').read_text())]
+    images = []
+    for product in PRODUCTS:
+        path = BASE / product / 'per_image.json'
+        images.extend(json.loads(path.read_text()) if path.is_file() else
+                      load_ng_reference(product)[1])
     wrong = [row for row in images if row['source_group'] == 'test_normal'
              and row['product_code'] == NORMAL_TEST_PRODUCT
              and row['wrong_pipeline_accepted']]

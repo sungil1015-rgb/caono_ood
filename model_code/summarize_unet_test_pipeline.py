@@ -13,16 +13,24 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 from train_step_contrastive import ROOT
+from bundle_paths import ASSET_ROOT, OUTPUT_ROOT, load_ng_reference
 
-BASE = ROOT / "data/experiment_v1/roi_unet_test_pipeline"
+BASE = OUTPUT_ROOT / "roi_unet_test_pipeline"
 TEST_PRODUCTS = ("3029C003AA",)
 NG_PRODUCTS = ("3029C003AA", "3029C009AA")
 STEPS = tuple(range(1, 13))
 
 
 def data():
-    reports = {p: json.loads((BASE / p / "summary.json").read_text()) for p in NG_PRODUCTS}
-    images = {p: json.loads((BASE / p / "per_image.json").read_text()) for p in NG_PRODUCTS}
+    reports, images = {}, {}
+    for product in NG_PRODUCTS:
+        if (BASE / product / "per_image.json").is_file():
+            reports[product] = json.loads((BASE / product / "summary.json").read_text())
+            images[product] = json.loads((BASE / product / "per_image.json").read_text())
+        elif product != TEST_PRODUCTS[0]:
+            reports[product], images[product] = load_ng_reference(product)
+        else:
+            raise FileNotFoundError(BASE / product / "per_image.json")
     return reports, images
 
 
@@ -142,7 +150,7 @@ def save_ng_chart(reports, figure_dir):
 
 
 def save_failure_gallery(images, figure_dir):
-    font_path = ROOT / "experiment/assets/fonts/NanumGothic-Bold.ttf"
+    font_path = ASSET_ROOT / "fonts/NanumGothic-Bold.ttf"
     font = ImageFont.truetype(str(font_path), 17) if font_path.is_file() else ImageFont.load_default()
     for product in TEST_PRODUCTS:
         failed = [r for r in images[product]

@@ -17,8 +17,9 @@ from torchvision.transforms import ColorJitter
 from torchvision.transforms import functional as TF
 
 from train_step_contrastive import FourDepthEncoder, LEVELS, ROOT, supervised_contrastive
+from bundle_paths import OUTPUT_ROOT, ROI_MANIFEST
 
-SOURCE = ROOT / 'data/experiment_v1/roi_contrastive/manifest.json'
+SOURCE = ROI_MANIFEST
 STEPS = tuple(range(1, 13))
 
 
@@ -89,7 +90,7 @@ def main():
     p.add_argument('--device', default='cuda:1')
     p.add_argument('--output', type=Path)
     args=p.parse_args()
-    output=args.output or ROOT/'data/experiment_v1/roi_contrastive'/args.product
+    output=args.output or OUTPUT_ROOT/'roi_contrastive'/args.product
     output.mkdir(parents=True,exist_ok=True)
     manifest=json.loads(SOURCE.read_text())
     rows=[r for r in manifest['rows'] if r['product_code']==args.product and r['split']=='train' and r['detected']]

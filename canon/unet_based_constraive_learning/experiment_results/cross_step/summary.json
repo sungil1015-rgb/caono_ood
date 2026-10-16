@@ -1,0 +1,561 @@
+{
+  "product": "3029C003AA",
+  "split": "val_step",
+  "steps": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "design": "Every val_step normal ROI is scored once against each step 1-12. Own step should PASS; other steps should FAIL. Each model uses its saved per-step p99 val_normal threshold and five-nearest-train cosine score.",
+  "models": {
+    "unet_up1": {
+      "name": "unet_up1",
+      "query_images": 1104,
+      "true_step_pass": 1097,
+      "true_step_fail": 7,
+      "wrong_step_attempts": 12144,
+      "wrong_step_rejected": 12143,
+      "wrong_step_accepted": 1,
+      "wrong_step_rejection_rate": 0.9999176548089591,
+      "images_with_any_wrong_step_accepted": 1,
+      "images_with_only_true_step_accepted": 1097,
+      "by_source_step": {
+        "1": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "2": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "3": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "4": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "5": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "6": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "7": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "8": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "9": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "10": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "11": {
+          "images": 92,
+          "wrong_accepted": 1
+        },
+        "12": {
+          "images": 92,
+          "wrong_accepted": 0
+        }
+      },
+      "by_expected_step": {
+        "1": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "2": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "3": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "4": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "5": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "6": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "7": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "8": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "9": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "10": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "11": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "12": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 1
+        }
+      },
+      "wrong_accepted_matrix": {
+        "1": {
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "2": {
+          "1": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "3": {
+          "1": 0,
+          "2": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "4": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "5": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "6": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "7": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "8": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "9": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "10": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "11": 0,
+          "12": 0
+        },
+        "11": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "12": 1
+        },
+        "12": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0
+        }
+      }
+    },
+    "resnet_last": {
+      "name": "resnet_last",
+      "query_images": 1104,
+      "true_step_pass": 1093,
+      "true_step_fail": 11,
+      "wrong_step_attempts": 12144,
+      "wrong_step_rejected": 12143,
+      "wrong_step_accepted": 1,
+      "wrong_step_rejection_rate": 0.9999176548089591,
+      "images_with_any_wrong_step_accepted": 1,
+      "images_with_only_true_step_accepted": 1093,
+      "by_source_step": {
+        "1": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "2": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "3": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "4": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "5": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "6": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "7": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "8": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "9": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "10": {
+          "images": 92,
+          "wrong_accepted": 0
+        },
+        "11": {
+          "images": 92,
+          "wrong_accepted": 1
+        },
+        "12": {
+          "images": 92,
+          "wrong_accepted": 0
+        }
+      },
+      "by_expected_step": {
+        "1": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "2": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "3": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "4": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "5": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "6": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "7": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "8": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "9": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "10": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "11": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 0
+        },
+        "12": {
+          "wrong_attempts": 1012,
+          "wrong_accepted": 1
+        }
+      },
+      "wrong_accepted_matrix": {
+        "1": {
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "2": {
+          "1": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "3": {
+          "1": 0,
+          "2": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "4": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "5": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "6": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "7": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "8": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "9": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "10": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "11": 0,
+          "12": 0
+        },
+        "11": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "12": 1
+        },
+        "12": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0
+        }
+      }
+    }
+  }
+}

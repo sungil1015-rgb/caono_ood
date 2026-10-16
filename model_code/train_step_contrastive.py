@@ -23,13 +23,14 @@ from torchvision.models import ResNet18_Weights, resnet18
 from torchvision.transforms import ColorJitter
 
 from image_preprocess import ROTATIONS, preprocess
+from bundle_paths import ASSET_ROOT, DATA_ROOT, OUTPUT_ROOT
 
-ROOT = Path(__file__).resolve().parents[1]
-MANIFESTS = ROOT / "data/experiment_v1"
+ROOT = DATA_ROOT
+MANIFESTS = ASSET_ROOT / "splits"
 PRODUCT = "3029C003AA"
 STEPS = tuple(range(13))
 LEVELS = ("stem", "layer1", "layer2", "layer3")
-OUTPUT = MANIFESTS / "contrastive_step_3029C003AA"
+OUTPUT = OUTPUT_ROOT / "contrastive_step_3029C003AA"
 INPUT_SIZE = 1024
 SEED = 1047
 

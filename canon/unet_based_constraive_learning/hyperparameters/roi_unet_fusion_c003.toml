@@ -1,0 +1,13 @@
+[experiment]
+product = '3029C003AA'
+results = 'data/experiment_v1/roi_unet_contrastive/batch144_epoch20/3029C003AA/results.json'
+output_dir = 'data/experiment_v1/roi_unet_contrastive/batch144_epoch20/3029C003AA/fusion_search'
+seed = 1047
+
+[fusion]
+levels = ['bottleneck', 'up2', 'up1']
+grid_divisions = 100
+calibration_quantile = 0.99
+development_serial_fraction = 0.60
+cross_validation_folds = 5
+exploratory_weights = [0.90, 0.10, 0.00]
