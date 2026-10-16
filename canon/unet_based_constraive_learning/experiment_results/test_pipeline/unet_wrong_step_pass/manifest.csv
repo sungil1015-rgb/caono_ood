@@ -1,4 +1,0 @@
-product_code,serial,true_step,predicted_step,wrong_unet_accepted,wrong_pipeline_accepted,source_path,crop_path,original_copy,roi_copy
-3029C003AA,2EQ17051,7,10,[10],[10],data/canon_data/3029C003AA/2EQ17051/step_7.jpg,data/experiment_v1/roi_unet_test_pipeline/3029C003AA/crops/test_normal/2EQ17051/step_7.jpg,3029C003AA/original/2EQ17051__actual_7__pass_10.jpg,3029C003AA/roi/2EQ17051__actual_7__pass_10.jpg
-3029C003AA,2EQ16918,10,11,[11],[11],data/canon_data/3029C003AA/2EQ16918/step_10.jpg,data/experiment_v1/roi_unet_test_pipeline/3029C003AA/crops/test_normal/2EQ16918/step_10.jpg,3029C003AA/original/2EQ16918__actual_10__pass_11.jpg,3029C003AA/roi/2EQ16918__actual_10__pass_11.jpg
-3029C003AA,2EQ17046,11,12,[12],[12],data/canon_data/3029C003AA/2EQ17046/step_11.jpg,data/experiment_v1/roi_unet_test_pipeline/3029C003AA/crops/test_normal/2EQ17046/step_11.jpg,3029C003AA/original/2EQ17046__actual_11__pass_12.jpg,3029C003AA/roi/2EQ17046__actual_11__pass_12.jpg

@@ -1,6 +1,0 @@
-product_code,serial,source_group,source_path,true_step,predicted_step,detected,unet_expected_pass,pipeline_expected_pass
-3029C003AA,2EQ16580,ng_folder,data/canon_data/NG_p/3029C003AA__2EQ16580__2022-01-05_08_16_12_340_cell1_process18_step_9.jpg,9,10,True,False,False
-3029C003AA,2EQ17023,ng_folder,data/canon_data/NG_p/3029C003AA__2EQ17023__2022-01-12_15_49_16_968_cell1_process18_step_7.jpg,7,1,False,False,False
-3029C003AA,2EQ16854,ng_reclassified,data/canon_data/3029C003AA/2EQ16854/step_11.jpg,11,12,True,False,False
-3029C009AA,2EX36524,ng_folder,data/canon_data/NG_p/3029C009AA__2EX36524__2022-01-11_10_27_16_288_cell1_process18_step_3.jpg,3,3,True,True,True
-3029C009AA,2EX36613,ng_folder,data/canon_data/NG_p/3029C009AA__2EX36613__2022-01-19_13_45_14_928_cell1_process18_step_3.jpg,3,3,True,False,False

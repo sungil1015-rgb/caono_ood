@@ -1,8 +1,0 @@
-# Tested with Python 3.12.3
-# Keep torch and torchvision on this compatible, tested pair.
-torch==2.14.1
-torchvision==0.29.1
-
-numpy==2.5.4
-Pillow==12.3.0
-matplotlib==3.11.2
