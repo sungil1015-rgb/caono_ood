@@ -1,0 +1,7 @@
+[comparison]
+no_rotation_results = 'data/experiment_v1/roi_unet_contrastive/color_only_equal_batch144_epoch20/3029C003AA/results.json'
+rotation_results = 'data/experiment_v1/roi_unet_contrastive/strong_color_with_rotation_epoch7/3029C003AA/results.json'
+output_dir = 'data/experiment_v1/roi_unet_contrastive/rotation_ablation_c003'
+bootstrap_seed = 1047
+bootstrap_replicates = 10000
+confidence = 0.95

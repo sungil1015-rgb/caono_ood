@@ -1,0 +1,218 @@
+[
+  {
+    "setting": "previous rotation + mild color",
+    "config": "roi_unet_contrastive_batch144_epoch20.toml",
+    "completed_epochs": 17,
+    "level": "bottleneck",
+    "normal": {
+      "total": 1104,
+      "pass": 1082,
+      "fail": 22,
+      "no_roi": 0
+    },
+    "ng": {
+      "total": 2,
+      "pass": 0,
+      "fail": 1,
+      "no_roi": 1
+    },
+    "paired_normal": {
+      "total": 2,
+      "pass": 2,
+      "fail": 0,
+      "no_roi": 0
+    }
+  },
+  {
+    "setting": "previous rotation + mild color",
+    "config": "roi_unet_contrastive_batch144_epoch20.toml",
+    "completed_epochs": 17,
+    "level": "up2",
+    "normal": {
+      "total": 1104,
+      "pass": 1081,
+      "fail": 23,
+      "no_roi": 0
+    },
+    "ng": {
+      "total": 2,
+      "pass": 0,
+      "fail": 1,
+      "no_roi": 1
+    },
+    "paired_normal": {
+      "total": 2,
+      "pass": 2,
+      "fail": 0,
+      "no_roi": 0
+    }
+  },
+  {
+    "setting": "previous rotation + mild color",
+    "config": "roi_unet_contrastive_batch144_epoch20.toml",
+    "completed_epochs": 17,
+    "level": "up1",
+    "normal": {
+      "total": 1104,
+      "pass": 1080,
+      "fail": 24,
+      "no_roi": 0
+    },
+    "ng": {
+      "total": 2,
+      "pass": 0,
+      "fail": 1,
+      "no_roi": 1
+    },
+    "paired_normal": {
+      "total": 2,
+      "pass": 2,
+      "fail": 0,
+      "no_roi": 0
+    }
+  },
+  {
+    "setting": "color only, equal loss",
+    "config": "roi_unet_c003_color_only_equal.toml",
+    "completed_epochs": 7,
+    "level": "bottleneck",
+    "normal": {
+      "total": 1104,
+      "pass": 1094,
+      "fail": 10,
+      "no_roi": 0
+    },
+    "ng": {
+      "total": 2,
+      "pass": 0,
+      "fail": 1,
+      "no_roi": 1
+    },
+    "paired_normal": {
+      "total": 2,
+      "pass": 2,
+      "fail": 0,
+      "no_roi": 0
+    }
+  },
+  {
+    "setting": "color only, equal loss",
+    "config": "roi_unet_c003_color_only_equal.toml",
+    "completed_epochs": 7,
+    "level": "up2",
+    "normal": {
+      "total": 1104,
+      "pass": 1093,
+      "fail": 11,
+      "no_roi": 0
+    },
+    "ng": {
+      "total": 2,
+      "pass": 0,
+      "fail": 1,
+      "no_roi": 1
+    },
+    "paired_normal": {
+      "total": 2,
+      "pass": 2,
+      "fail": 0,
+      "no_roi": 0
+    }
+  },
+  {
+    "setting": "color only, equal loss",
+    "config": "roi_unet_c003_color_only_equal.toml",
+    "completed_epochs": 7,
+    "level": "up1",
+    "normal": {
+      "total": 1104,
+      "pass": 1097,
+      "fail": 7,
+      "no_roi": 0
+    },
+    "ng": {
+      "total": 2,
+      "pass": 0,
+      "fail": 1,
+      "no_roi": 1
+    },
+    "paired_normal": {
+      "total": 2,
+      "pass": 2,
+      "fail": 0,
+      "no_roi": 0
+    }
+  },
+  {
+    "setting": "color only, bottleneck 3:1:1",
+    "config": "roi_unet_c003_color_only_bottleneck3.toml",
+    "completed_epochs": 7,
+    "level": "bottleneck",
+    "normal": {
+      "total": 1104,
+      "pass": 1093,
+      "fail": 11,
+      "no_roi": 0
+    },
+    "ng": {
+      "total": 2,
+      "pass": 0,
+      "fail": 1,
+      "no_roi": 1
+    },
+    "paired_normal": {
+      "total": 2,
+      "pass": 2,
+      "fail": 0,
+      "no_roi": 0
+    }
+  },
+  {
+    "setting": "color only, bottleneck 3:1:1",
+    "config": "roi_unet_c003_color_only_bottleneck3.toml",
+    "completed_epochs": 7,
+    "level": "up2",
+    "normal": {
+      "total": 1104,
+      "pass": 1087,
+      "fail": 17,
+      "no_roi": 0
+    },
+    "ng": {
+      "total": 2,
+      "pass": 0,
+      "fail": 1,
+      "no_roi": 1
+    },
+    "paired_normal": {
+      "total": 2,
+      "pass": 2,
+      "fail": 0,
+      "no_roi": 0
+    }
+  },
+  {
+    "setting": "color only, bottleneck 3:1:1",
+    "config": "roi_unet_c003_color_only_bottleneck3.toml",
+    "completed_epochs": 7,
+    "level": "up1",
+    "normal": {
+      "total": 1104,
+      "pass": 1086,
+      "fail": 18,
+      "no_roi": 0
+    },
+    "ng": {
+      "total": 2,
+      "pass": 0,
+      "fail": 1,
+      "no_roi": 1
+    },
+    "paired_normal": {
+      "total": 2,
+      "pass": 2,
+      "fail": 0,
+      "no_roi": 0
+    }
+  }
+]
